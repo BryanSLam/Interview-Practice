@@ -5,7 +5,10 @@ import java.util.Stack;
 
 
 public class Main {
-
+	public Main()
+	{
+		
+	}
 	public static void main(String[] args) {
 		ArrayList<Integer> test = new ArrayList<Integer>();
 		test.add(1);
@@ -147,6 +150,10 @@ public class Main {
 	
 	public static char[] reverseCharArray(char[] a)
 	{
+		if(a==null)
+		{
+			return null;
+		}
 		char[] reverse = new char[a.length];
 		int counter = 0;
 		for(int i=a.length-1; i>=0; i--)
