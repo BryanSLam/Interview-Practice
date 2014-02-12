@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Stack;
 
 
 
@@ -23,8 +25,18 @@ public class Main {
 //			System.out.println(test.get(i));
 //		}
 		
-		System.out.println(binarySearch(test, 10));
+//		System.out.println(remove("google", 'o'));
+//		int[] array = new int[5];
 		
+		String s = "racecar";
+		char[] test2 = s.toCharArray();
+		test2 = reverseCharArray(test2);
+		StringBuilder sb = new StringBuilder();
+		for(int i=0; i<test2.length; i++)
+		{
+			sb.append(test2[i]);
+		}
+		System.out.println(sb.toString());
 	}
 	//array must already be sorted
 	public static boolean binarySearch(ArrayList<Integer> s, int x)
@@ -68,5 +80,82 @@ public class Main {
 		}
 		
 	}
+	//Given a string and a char remove instances of the char in
+	//the string don't use replace
+	public static String remove(String s, char c)
+	{
+		//Quick corner case maybe not needed
+		if(s.length() == 0)
+		{
+			return s;
+		}
+		StringBuilder sb = new StringBuilder();
+		for(int i=0; i< s.length(); i++)
+		{
+			if (s.charAt(i)!= c)
+			{
+				sb.append(s.charAt(i));
+			}
+		}
+		return sb.toString();
+		
+	}
+	//Write the recursive implementation of DFS and BFS for an n-ary tree. 
+	//Tree node has an int data item, and a linked list "children" of nodes.
+	public static boolean DFS(Node root, int lookup)
+	{
+		if(root.getData() == lookup)
+		{
+			return true;
+		}
+		//DFS Uses a stack
+		Stack<Node> stack = new Stack<Node>();
+		//add root to stack
+		stack.add(root);		
+		//Begin da while loop
+		boolean found = false;
+		
+		//Logic: pop a node off the stack, recursive call, if it return true
+		//then return true, else add its children to a stack if the child 
+		//hasn't been visited yet
+		//if you find nothing and you're at a leaf, return false
+		while(stack.empty() == false)
+		{
+			Node currentNode = stack.pop();
+			//Recursive call to check current node
+			found = DFS(currentNode, lookup);
+			if (found == true)
+			{
+				return true;
+			}
+			Iterator<Node> iterator = root.getChildren().iterator();
+			while(iterator.hasNext() == true)
+			{
+				Node nextNode = iterator.next();
+				if(nextNode.getVisited() == false)
+				{
+					stack.add(nextNode);
+				}
+			}
+		}
+		//found nothing
+		return false;
+	}
+	
+	//Write a program to reverse a character array "Hello World". 
+	//Give different test cases(input arrays) to test your code.
+	
+	public static char[] reverseCharArray(char[] a)
+	{
+		char[] reverse = new char[a.length];
+		int counter = 0;
+		for(int i=a.length-1; i>=0; i--)
+		{
+			reverse[counter] = a[i];
+			counter++;
+		}
+		return reverse;
+	}
+	
 
 }
