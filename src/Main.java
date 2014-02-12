@@ -150,10 +150,6 @@ public class Main {
 	
 	public static char[] reverseCharArray(char[] a)
 	{
-		if(a==null)
-		{
-			return null;
-		}
 		char[] reverse = new char[a.length];
 		int counter = 0;
 		for(int i=a.length-1; i>=0; i--)
