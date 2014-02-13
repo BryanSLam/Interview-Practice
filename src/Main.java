@@ -31,15 +31,15 @@ public class Main {
 //		System.out.println(remove("google", 'o'));
 //		int[] array = new int[5];
 		
-		String s = "racecar";
-		char[] test2 = s.toCharArray();
-		test2 = reverseCharArray(test2);
-		StringBuilder sb = new StringBuilder();
-		for(int i=0; i<test2.length; i++)
-		{
-			sb.append(test2[i]);
-		}
-		System.out.println(sb.toString());
+//		String s = "racecar";
+//		char[] test2 = s.toCharArray();
+//		test2 = reverseCharArray(test2);
+//		StringBuilder sb = new StringBuilder();
+//		for(int i=0; i<test2.length; i++)
+//		{
+//			sb.append(test2[i]);
+//		}
+//		System.out.println(sb.toString());
 	}
 	//array must already be sorted
 	public static boolean binarySearch(ArrayList<Integer> s, int x)

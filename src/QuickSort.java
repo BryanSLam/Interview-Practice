@@ -10,44 +10,48 @@ public class QuickSort
 	}
 	public ArrayList<Integer> quickSort(ArrayList<Integer> a)
 	{
-		//Base case
-		if (a.size() == 0 || a.size() == 1)
-		{
+		//Algorithim is given a list, base case, pick a random pivot, create subarrays
+		//place elements into subarrays based on comparison with pivot, recursivley call 
+		//on subarrays while pivot is at its final point.  concatenate the recursive
+		//calls with the pivot and the other subarray
+		
+		if (a.size() == 1 || a.size() == 0){
 			return a;
 		}
-		//Else prepare the two subarrays
-		ArrayList<Integer> less = new ArrayList<Integer>();
-		ArrayList<Integer> greater = new ArrayList<Integer>();
-		
-		//generate random pivot random is inclusive so size-1
-		Random r = new Random();
-		int pivot = r.nextInt(a.size()-1);
-		
-		//Partition into left and right subarrays
-		for (int i = 0; i<a.size(); i++)
-		{
-			if (i != pivot)
+			
+		else{
+			ArrayList<Integer> left = new ArrayList<Integer>();
+			ArrayList<Integer> right = new ArrayList<Integer>();
+			Random r = new Random();
+			
+			//Random is inclusive of 0 and exclusive of the parameter
+			int pivot = r.nextInt(a.size());
+			
+			for(int i = 0; i< a.size(); i++)
 			{
-				if(a.get(i) <= a.get(pivot))
-				{
-					less.add(a.get(i));
-				}
-				else
-				{
-					greater.add(a.get(i));
+				//As long as i isnt the same index as the pivot
+				if(i != pivot){
+					if(a.get(i)>a.get(pivot)){
+						right.add(a.get(i));
+					}
+					else{
+						left.add(a.get(i));
+					}
 				}
 			}
+			
+			left = quickSort(left);
+			right = quickSort(right);
+			
+			//Concatenate then return
+			left.add(a.get(pivot));
+			for(int i =0; i< right.size(); i++)
+			{
+				left.add(right.get(i));
+			}
+			
+			return left;
 		}
-		//Recursive quicksort
-		less = quickSort(less);
-		greater = quickSort(greater);
-		//concatenate
-		less.add(a.get(pivot));
-		for (int i = 0; i<greater.size(); i++)
-		{
-			less.add(greater.get(i));
-		}
-		return less;
 	}
 	
 }
